@@ -1,13 +1,13 @@
 import React from "react";
 
 export default function IntroScreen({ user, onContinue }) {
-  // Try multiple ways to get the email safely
+  // Safely get email from Cognito user object
   const email =
-    user?.attributes?.email || // Cognito attributes
-    user?.signInUserSession?.idToken?.payload?.email || // Fallback from session
+    user?.attributes?.email || // Normal case
+    user?.signInUserSession?.idToken?.payload?.email || // Sometimes stored in token payload
     null;
 
-  // Get prefix before @, fallback to username or "User"
+  // Show prefix of email, fallback to username or "User"
   const displayName = email
     ? email.split("@")[0]
     : user?.username || "User";
@@ -23,7 +23,7 @@ export default function IntroScreen({ user, onContinue }) {
       {/* Overlay */}
       <div style={styles.overlay}>
         <div style={styles.card}>
-          <h1 style={styles.title}>Welcome {displayName} 👋</h1>
+          <h1 style={styles.title}>Welcome..! {displayName} 👋</h1>
           <p style={styles.subtitle}>
             Let’s personalize your learning experience.
           </p>
