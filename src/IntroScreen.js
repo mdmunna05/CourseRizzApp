@@ -1,6 +1,11 @@
 import React from "react";
 
 export default function IntroScreen({ user, onContinue }) {
+  // Get email prefix (before @), fallback to username if no email
+  const displayName = user?.attributes?.email
+    ? user.attributes.email.split("@")[0]
+    : user?.username || "User";
+
   return (
     <div style={styles.container}>
       {/* Background Video */}
@@ -12,7 +17,7 @@ export default function IntroScreen({ user, onContinue }) {
       {/* Overlay */}
       <div style={styles.overlay}>
         <div style={styles.card}>
-          <h1 style={styles.title}>Welcome {user.username} 👋</h1>
+          <h1 style={styles.title}>Welcome {displayName} 👋</h1>
           <p style={styles.subtitle}>
             Let’s personalize your learning experience.
           </p>
