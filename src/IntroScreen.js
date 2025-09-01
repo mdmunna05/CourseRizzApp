@@ -1,9 +1,15 @@
 import React from "react";
 
 export default function IntroScreen({ user, onContinue }) {
-  // Get email prefix (before @), fallback to username if no email
-  const displayName = user?.attributes?.email
-    ? user.attributes.email.split("@")[0]
+  // Try multiple ways to get the email safely
+  const email =
+    user?.attributes?.email || // Cognito attributes
+    user?.signInUserSession?.idToken?.payload?.email || // Fallback from session
+    null;
+
+  // Get prefix before @, fallback to username or "User"
+  const displayName = email
+    ? email.split("@")[0]
     : user?.username || "User";
 
   return (
@@ -88,6 +94,3 @@ const styles = {
     transition: "transform 0.3s ease",
   },
 };
-
-// Remember: Add this to public/index.html <head>
-// <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
