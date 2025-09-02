@@ -8,12 +8,7 @@ export default function IntroScreen({ user, onContinue }) {
     user?.attributes?.email || // Standard Cognito users
     user?.signInUserSession?.idToken?.payload?.email || // From the token payload
     user?.username || // Fallback (UUID if email missing)
-    null;
-
-  // Extract prefix (before @) if email exists
-  const displayName = email && email.includes("@")
-    ? email.split("@")[0]
-    : email || "User";
+    "User";
 
   return (
     <div style={styles.container}>
@@ -26,7 +21,7 @@ export default function IntroScreen({ user, onContinue }) {
       {/* Overlay */}
       <div style={styles.overlay}>
         <div style={styles.card}>
-          <h1 style={styles.title}>Welcome..! {displayName} 👋</h1>
+          <h1 style={styles.title}>Welcome..! {email} 👋</h1>
           <p style={styles.subtitle}>
             Let’s personalize your learning experience.
           </p>
