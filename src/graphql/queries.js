@@ -16,19 +16,11 @@ export const getCourse = /* GraphQL */ `
 `;
 export const listCourses = /* GraphQL */ `
   query ListCourses(
-    $id: ID
     $filter: ModelCourseFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listCourses(
-      id: $id
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listCourses(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title
@@ -58,19 +50,11 @@ export const getRecommendation = /* GraphQL */ `
 `;
 export const listRecommendations = /* GraphQL */ `
   query ListRecommendations(
-    $id: ID
     $filter: ModelRecommendationFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listRecommendations(
-      id: $id
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listRecommendations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         studentEmail
@@ -158,19 +142,11 @@ export const getStudent = /* GraphQL */ `
 `;
 export const listStudents = /* GraphQL */ `
   query ListStudents(
-    $id: ID
     $filter: ModelStudentFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listStudents(
-      id: $id
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         email
