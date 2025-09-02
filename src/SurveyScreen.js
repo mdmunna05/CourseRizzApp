@@ -94,6 +94,11 @@ export default function SurveyScreen({ onComplete }) {
 
   return (
     <div style={styles.container}>
+      {/* Decorative Elements */}
+      <div style={styles.decorationCircleLarge}></div>
+      <div style={styles.decorationCircleSmall}></div>
+      <div style={styles.decorationSquare}></div>
+
       <div style={styles.card}>
         {current.content || (
           <>
@@ -154,19 +159,23 @@ export default function SurveyScreen({ onComplete }) {
 const styles = {
   container: {
     minHeight: "100vh",
-    backgroundColor: "#f5f5f5",
+    background: "linear-gradient(135deg, #6b48ff, #ff4b4b)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     padding: 24,
+    position: "relative",
+    overflow: "hidden",
+    fontFamily: "'Poppins', sans-serif",
   },
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
     padding: 24,
     borderRadius: 16,
     maxWidth: 500,
     width: "100%",
     boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+    zIndex: 5,
   },
   title: {
     fontSize: 24,
@@ -210,18 +219,20 @@ const styles = {
     marginBottom: 16,
   },
   nextButton: {
-    backgroundColor: "#000",
+    background: "linear-gradient(135deg, #ff9800, #ff5722)",
     color: "#fff",
     padding: "12px 20px",
-    borderRadius: 12,
+    borderRadius: 50,
     fontSize: 16,
     fontWeight: "600",
     border: "none",
     cursor: "pointer",
     marginLeft: 8,
+    boxShadow: "0 5px 20px rgba(0,0,0,0.3)",
+    transition: "transform 0.3s ease",
   },
   backButton: {
-    backgroundColor: "#fff",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
     color: "#000",
     padding: "12px 20px",
     borderRadius: 12,
@@ -230,5 +241,38 @@ const styles = {
     border: "1px solid #ccc",
     cursor: "pointer",
     marginRight: 8,
+  },
+  decorationCircleLarge: {
+    position: "absolute",
+    top: "15%",
+    right: "20%",
+    width: "120px",
+    height: "120px",
+    background: "#ffca28",
+    borderRadius: "50%",
+    zIndex: 1,
+    opacity: 0.6,
+  },
+  decorationCircleSmall: {
+    position: "absolute",
+    top: "10%",
+    left: "10%",
+    width: "60px",
+    height: "60px",
+    background: "#cddc39",
+    borderRadius: "50%",
+    zIndex: 1,
+    opacity: 0.6,
+  },
+  decorationSquare: {
+    position: "absolute",
+    top: "50%",
+    right: "10%",
+    width: "80px",
+    height: "80px",
+    background: "#f06292",
+    transform: "rotate(45deg)",
+    zIndex: 1,
+    opacity: 0.6,
   },
 };

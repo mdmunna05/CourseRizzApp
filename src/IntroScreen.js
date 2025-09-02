@@ -1,35 +1,27 @@
 import React from "react";
 
-export default function IntroScreen({ user, onContinue }) {
-  console.log("Amplify user object:", user); // 👈 Debug log
-
-  // Try to fetch the email from multiple safe places
-  const email =
-    user?.attributes?.email || // Standard Cognito users
-    user?.signInUserSession?.idToken?.payload?.email || // From the token payload
-    user?.username || // Fallback (UUID if email missing)
-    "User";
-
+export default function IntroScreen({ onContinue }) {
   return (
     <div style={styles.container}>
-      {/* Background Video */}
-      <video autoPlay muted loop playsInline style={styles.video}>
-        <source src="/assets/intro.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Overlay */}
-      <div style={styles.overlay}>
-        <div style={styles.card}>
-          <h1 style={styles.title}>Welcome..! {email} 👋</h1>
-          <p style={styles.subtitle}>
-            Let’s personalize your learning experience.
-          </p>
-          <button style={styles.button} onClick={onContinue}>
-            🚀 Start Survey
-          </button>
-        </div>
+      {/* Main Card */}
+      <div style={styles.mainCard}>
+        <h1 style={styles.title}>Courserizz</h1>
+        <p style={styles.subtitle}>Your Learning Adventure Awaits</p>
+        <button style={styles.button} onClick={onContinue}>
+          🚀 Start Journey
+        </button>
       </div>
+
+      {/* Decorative Elements */}
+      <div style={styles.decorationCircleLarge}></div>
+      <div style={styles.decorationCircleSmall}></div>
+      <div style={styles.decorationSquare}></div>
+      <div style={styles.decorationStar}></div>
+
+      {/* Bottom Text */}
+      <p style={styles.bottomText}>
+        Discover, learn, and grow with interactive courses designed just for you
+      </p>
     </div>
   );
 }
@@ -39,56 +31,92 @@ const styles = {
     position: "relative",
     width: "100vw",
     height: "100vh",
-    overflow: "hidden",
-    fontFamily: "'Poppins', sans-serif",
-  },
-  video: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    zIndex: 1,
-  },
-  overlay: {
-    position: "relative",
-    zIndex: 2,
+    background: "linear-gradient(135deg, #6b48ff, #ff4b4b)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100%",
-    background: "rgba(0, 0, 0, 0.5)",
-    padding: "20px",
+    overflow: "hidden",
+    fontFamily: "'Poppins', sans-serif",
   },
-  card: {
-    background: "rgba(255, 255, 255, 0.1)",
-    padding: "40px 60px",
-    borderRadius: "20px",
+  mainCard: {
     textAlign: "center",
-    backdropFilter: "blur(10px)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+    zIndex: 5,
   },
   title: {
-    fontSize: "3rem",
-    fontWeight: "700",
-    marginBottom: "20px",
+    fontSize: "4rem",
+    fontWeight: "900",
+    marginBottom: "10px",
     color: "#fff",
+    textShadow: "2px 2px 4px rgba(0,0,0,0.2)",
   },
   subtitle: {
-    fontSize: "1.3rem",
-    marginBottom: "40px",
-    color: "#e0e0e0",
-    lineHeight: "1.5",
+    fontSize: "1.5rem",
+    marginBottom: "30px",
+    color: "#fff",
+    textShadow: "1px 1px 3px rgba(0,0,0,0.2)",
   },
   button: {
-    padding: "15px 40px",
+    padding: "15px 45px",
     fontSize: "1.2rem",
-    borderRadius: "30px",
+    borderRadius: "50px",
     border: "none",
-    background: "linear-gradient(135deg, #6a11cb, #2575fc)",
+    background: "linear-gradient(135deg, #ff9800, #ff5722)",
     color: "#fff",
     cursor: "pointer",
+    boxShadow: "0 5px 20px rgba(0,0,0,0.3)",
     transition: "transform 0.3s ease",
+  },
+  decorationCircleLarge: {
+    position: "absolute",
+    top: "15%",
+    right: "20%",
+    width: "120px",
+    height: "120px",
+    background: "#ffca28",
+    borderRadius: "50%",
+    zIndex: 1,
+    opacity: 0.6,
+  },
+  decorationCircleSmall: {
+    position: "absolute",
+    top: "10%",
+    left: "10%",
+    width: "60px",
+    height: "60px",
+    background: "#cddc39",
+    borderRadius: "50%",
+    zIndex: 1,
+    opacity: 0.6,
+  },
+  decorationSquare: {
+    position: "absolute",
+    top: "50%",
+    right: "10%",
+    width: "80px",
+    height: "80px",
+    background: "#f06292",
+    transform: "rotate(45deg)",
+    zIndex: 1,
+    opacity: 0.6,
+  },
+  decorationStar: {
+    position: "absolute",
+    bottom: "20%",
+    left: "20%",
+    width: "50px",
+    height: "50px",
+    background: "#fff",
+    clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+    zIndex: 1,
+    opacity: 0.6,
+  },
+  bottomText: {
+    position: "absolute",
+    bottom: "40px",
+    width: "100%",
+    textAlign: "center",
+    color: "#fff",
+    fontSize: "1rem",
+    opacity: 0.8,
   },
 };
