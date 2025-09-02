@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Auth } from "aws-amplify";
 
-export default function IntroScreen({ user, onContinue }) {
-  console.log("Amplify user object:", user); // 👈 Debug log
+export default function IntroScreen({ onContinue }) {
+  const [email, setEmail] = useState("User"); // default fallback
 
-  // Try to fetch the email from multiple safe places
-  const email =
-    user?.attributes?.email || // Standard Cognito users
-    user?.signInUserSession?.idToken?.payload?.email || // From the token payload
-    user?.username || // Fallback (UUID if email missing)
-    "User";
+  useEffect(() => {
+    async function fetchEmail() {
+      try {
+        const currentUser = await Auth.currentAuthenticatedUser();
+        console.log("Amplify current user:", currentUser);
+        setEmail(currentUser.attributes?.email || currentUser.username || "User");
+      } catch (err) {
+        console.error("Error fetching user email:", err);
+      }
+    }
+
+    fetchEmail();
+  }, []);
 
   return (
     <div style={styles.container}>
