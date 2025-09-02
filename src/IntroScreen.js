@@ -5,10 +5,10 @@ export default function IntroScreen({ onContinue }) {
     <div style={styles.container}>
       {/* Main Card */}
       <div style={styles.mainCard}>
-        <h1 style={styles.title}>Courserizz</h1>
+        <h1 style={styles.title}>CourseRizz</h1>
         <p style={styles.subtitle}>Your Learning Adventure Awaits</p>
         <button style={styles.button} onClick={onContinue}>
-          🚀 Start Journey
+          🚀 Start
         </button>
       </div>
 
@@ -16,7 +16,6 @@ export default function IntroScreen({ onContinue }) {
       <div style={styles.decorationCircleLarge}></div>
       <div style={styles.decorationCircleSmall}></div>
       <div style={styles.decorationSquare}></div>
-      <div style={styles.decorationStar}></div>
 
       {/* Bottom Text */}
       <p style={styles.bottomText}>
@@ -31,92 +30,89 @@ const styles = {
     position: "relative",
     width: "100vw",
     height: "100vh",
-    background: "linear-gradient(135deg, #6b48ff, #ff4b4b)",
+    background: "linear-gradient(135deg, #1a1a1a, #2d2d2d)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
     fontFamily: "'Poppins', sans-serif",
+    color: "#fff",
   },
   mainCard: {
     textAlign: "center",
     zIndex: 5,
+    background: "#2a2a2a",
+    padding: "40px",
+    borderRadius: "20px",
+    border: "1px solid #333",
+    boxShadow: "0 0 15px rgba(0, 0, 0, 0.5)",
   },
   title: {
-    fontSize: "4rem",
+    fontSize: "6rem",
     fontWeight: "900",
     marginBottom: "10px",
     color: "#fff",
-    textShadow: "2px 2px 4px rgba(0,0,0,0.2)",
+    textShadow: "2px 2px 10px rgba(255, 255, 255, 0.3)",
   },
   subtitle: {
     fontSize: "1.5rem",
     marginBottom: "30px",
-    color: "#fff",
-    textShadow: "1px 1px 3px rgba(0,0,0,0.2)",
+    color: "#ccc",
+    textShadow: "1px 1px 5px rgba(255, 255, 255, 0.2)",
   },
   button: {
     padding: "15px 45px",
     fontSize: "1.2rem",
-    borderRadius: "50px",
+    borderRadius: "25px",
     border: "none",
-    background: "linear-gradient(135deg, #ff9800, #ff5722)",
+    background: "linear-gradient(135deg, #4a90e2, #50e3c2)",
     color: "#fff",
     cursor: "pointer",
-    boxShadow: "0 5px 20px rgba(0,0,0,0.3)",
-    transition: "transform 0.3s ease",
+    boxShadow: "0 4px 15px rgba(74, 144, 226, 0.4)",
+    transition: "transform 0.3s ease, background 0.3s ease",
+    fontWeight: "600",
   },
   decorationCircleLarge: {
     position: "absolute",
     top: "15%",
     right: "20%",
-    width: "120px",
-    height: "120px",
-    background: "#ffca28",
+    width: "150px",
+    height: "150px",
+    background: "rgba(74, 144, 226, 0.2)",
     borderRadius: "50%",
     zIndex: 1,
-    opacity: 0.6,
+    animation: "float 6s ease-in-out infinite",
   },
   decorationCircleSmall: {
     position: "absolute",
     top: "10%",
     left: "10%",
-    width: "60px",
-    height: "60px",
-    background: "#cddc39",
+    width: "80px",
+    height: "80px",
+    background: "rgba(80, 227, 194, 0.2)",
     borderRadius: "50%",
     zIndex: 1,
-    opacity: 0.6,
+    animation: "float 5s ease-in-out infinite",
   },
   decorationSquare: {
     position: "absolute",
     top: "50%",
     right: "10%",
-    width: "80px",
-    height: "80px",
-    background: "#f06292",
+    width: "100px",
+    height: "100px",
+    background: "rgba(255, 215, 0, 0.2)",
     transform: "rotate(45deg)",
     zIndex: 1,
-    opacity: 0.6,
-  },
-  decorationStar: {
-    position: "absolute",
-    bottom: "20%",
-    left: "20%",
-    width: "50px",
-    height: "50px",
-    background: "#fff",
-    clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-    zIndex: 1,
-    opacity: 0.6,
+    animation: "float 7s ease-in-out infinite",
   },
   bottomText: {
     position: "absolute",
     bottom: "40px",
     width: "100%",
     textAlign: "center",
-    color: "#fff",
+    color: "#ccc",
     fontSize: "1rem",
     opacity: 0.8,
+    textShadow: "1px 1px 5px rgba(0, 0, 0, 0.5)",
   },
 };
