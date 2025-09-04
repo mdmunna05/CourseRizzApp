@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "courserizz",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcourserizzfd155892",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

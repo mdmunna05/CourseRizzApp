@@ -1,0 +1,10 @@
+type Survey
+  @model
+  @auth(rules: [{ allow: public }, { allow: private }, { allow: owner }]) {
+  id: ID!
+  currentDoing: String
+  mainGoal: String
+  learningStyles: [String!]
+  interests: [String!]
+  personalGoal: String
+}

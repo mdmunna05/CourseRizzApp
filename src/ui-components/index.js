@@ -4,10 +4,6 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as CourseCreateForm } from "./CourseCreateForm";
-export { default as CourseUpdateForm } from "./CourseUpdateForm";
-export { default as RecommendationCreateForm } from "./RecommendationCreateForm";
-export { default as RecommendationUpdateForm } from "./RecommendationUpdateForm";
-export { default as StudentCreateForm } from "./StudentCreateForm";
-export { default as StudentUpdateForm } from "./StudentUpdateForm";
+export { default as SurveyCreateForm } from "./SurveyCreateForm";
+export { default as SurveyUpdateForm } from "./SurveyUpdateForm";
 export { default as studioTheme } from "./studioTheme";

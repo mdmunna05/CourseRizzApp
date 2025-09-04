@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { generateClient } from "aws-amplify/api"; 
+import { createSurvey } from "./graphql/mutations";
+
+const client = generateClient();
 
 export default function SurveyScreen({ onComplete }) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -7,6 +11,7 @@ export default function SurveyScreen({ onComplete }) {
   const [learningStyles, setLearningStyles] = useState([]);
   const [interests, setInterests] = useState([]);
   const [personalGoal, setPersonalGoal] = useState("");
+  const [loading, setLoading] = useState(false); // 🔹 prevent duplicate submits
 
   const steps = [
     {
@@ -63,11 +68,35 @@ export default function SurveyScreen({ onComplete }) {
           </p>
           <button
             style={styles.nextButton}
-            onClick={() =>
-              onComplete({ currentDoing, mainGoal, learningStyles, interests, personalGoal })
-            }
+            disabled={loading} // 🔹 disable while saving
+            onClick={async () => {
+              if (loading) return; // prevent double submit
+              setLoading(true);
+              try {
+                const surveyData = {
+                  currentDoing,
+                  mainGoal,
+                  learningStyles,
+                  interests,
+                  personalGoal,
+                };
+
+                await client.graphql({
+                  query: createSurvey,
+                  variables: { input: surveyData },
+                });
+
+                console.log("✅ Survey saved:", surveyData);
+                onComplete(surveyData);
+              } catch (error) {
+                console.error("❌ Error saving survey:", error);
+                alert("Something went wrong while saving. Check console for details.");
+              } finally {
+                setLoading(false);
+              }
+            }}
           >
-            See My Recommendations
+            {loading ? "Saving..." : "See My Recommendations"}
           </button>
         </>
       ),
@@ -94,7 +123,6 @@ export default function SurveyScreen({ onComplete }) {
 
   return (
     <div style={styles.container}>
-      {/* Decorative Elements */}
       <div style={styles.decorationCircleLarge}></div>
       <div style={styles.decorationCircleSmall}></div>
       <div style={styles.decorationSquare}></div>
@@ -156,7 +184,7 @@ export default function SurveyScreen({ onComplete }) {
   );
 }
 
-const styles = {
+const styles = { /* 🔹 keep your styles unchanged */ 
   container: {
     minHeight: "100vh",
     background: "linear-gradient(135deg, #1a1a1a, #2d2d2d)",
